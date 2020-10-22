@@ -3,6 +3,12 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
+const chatList = [{
+  trigger:"Hi, Viola", response: (r)=>{
+    return "Hi, "+r.author.username
+  }
+}]
+
 bot.login(TOKEN);
 
 bot.on('ready', () => {
@@ -10,9 +16,13 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('pong');
-    msg.channel.send('pong');
+  chatList.forEach((r)=>{
+    if(msg.content === r.trigger){
+      msg.channel.send(r.response(msg))
+    }
+  })
+  if (msg.content === '?help') {
+    msg.channel.send('Viola Bot, has no use, just testing.');
 
   } else if (msg.content.startsWith('!kick')) {
     if (msg.mentions.users.size) {
