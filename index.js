@@ -18,7 +18,7 @@ bot.on('ready', () => {
 
 bot.on('message', msg => {
   chatList.forEach((r)=>{
-    if(msg.content === r.trigger){
+    if(msg.content.toLowerCase() === r.trigger.toLowerCase()){
       msg.channel.send(r.response(msg))
     }
   })
