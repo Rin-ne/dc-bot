@@ -2,12 +2,13 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
+const chatList = require("./chatlist.js")
 
-const chatList = [{
-  trigger:"Hi, Viola", response: (r)=>{
-    return "Hi, "+r.author.username
-  }
-}]
+// const chatList = [{
+//   trigger:"Hi, Viola", response: (r)=>{
+//     return "Hi, "+r.author.username
+//   }
+// }]
 
 bot.login(TOKEN);
 
